@@ -1,10 +1,21 @@
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import { KeyboardAvoidMode, window } from '@kit.ArkUI';
+import { StoreClass } from '../utils/store';
+import { AVPlayerClass } from '../utils/AVPlayerClass';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+
+    const manager = abilityAccessCtrl.createAtManager() // 创建程序控制管理器
+    await manager.requestPermissionsFromUser(this.context,
+      [
+        "ohos.permission.MICROPHONE",
+        'ohos.permission.LOCATION',
+        'ohos.permission.APPROXIMATELY_LOCATION'
+      ])
+
   }
 
   onDestroy(): void {
@@ -20,6 +31,9 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
+      StoreClass.init(this.context)
+      AVPlayerClass.init(this.context)
+      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
   }

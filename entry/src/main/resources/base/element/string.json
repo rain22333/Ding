@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "钉钉"
+    },
+    {
+      "name": "MICROPHONE_REASON",
+      "value": "用于发送语音"
+    },
+    {
+      "name": "location",
+      "value": "获取地理位置"
+    },
+    {
+      "name": "app_location",
+      "value": "获取精度位置"
     }
   ]
 }

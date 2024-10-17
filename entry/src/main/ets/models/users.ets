@@ -1,7 +1,7 @@
 // 用户信息
 export interface UserInfo {
   username: string // 用户昵称
-  avatar: string // 用户头像
+  avatar: ResourceStr // 用户头像
   firm: string  // 公司名称
   user_id: string // 用户id
 }
@@ -60,7 +60,7 @@ export const DefaultUserList: UserInfo[] = [{
 
 export const currentUser:UserInfo = {
   username: 'is me',
-  avatar:'http://d.hiphotos.baidu.com/image/pic/item/b58f8c5494eef01f119945cbe2fe9925bc317d2a.jpg',
+  avatar: $r('app.media.JERRY'),
   firm:'上海博为峰股份技术有限公司',
   user_id: '11'
 }

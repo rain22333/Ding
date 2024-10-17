@@ -1,4 +1,5 @@
 import { FirmTag, RenderItem } from '../component/Common'
+import { currentUser } from '../models/users'
 
 @Styles
 function RenderItemStyle() {
@@ -64,8 +65,9 @@ struct Header {
 
       // 头像、名字、二维码
       Row({ space: 10 }) {
-        Image($r('app.media.JERRY'))
-          .width("25%")
+        Image(currentUser.avatar)
+          .width(60)
+          .height(60)
           .borderRadius(8)
           .position({ x: 10, y: -50 })
         Text("张三").fontSize(18).fontWeight(8).layoutWeight(1).margin({ left: "33%" })

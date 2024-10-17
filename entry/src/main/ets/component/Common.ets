@@ -44,3 +44,28 @@ export function RenderItem (img:ResourceStr,text: string,info?:string,url:string
   .height(60)
   .justifyContent(FlexAlign.SpaceBetween)
 }
+
+
+export function
+transTime(time:number){
+  const dateObj = new Date(time)
+  const year = dateObj.getFullYear()
+  const month = dateObj.getMonth()
+  const date = dateObj.getDate()
+  const hours = dateObj.getHours();
+  const minutes = dateObj.getMinutes();
+  if (year === new Date().getFullYear()){
+    if (month === new Date().getMonth()){
+      if (date === new Date().getDate()) {
+        // 当天的消息
+        return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`
+      }else{
+        return `${new Date().getDate()-date}天前}`
+      }
+    }else{
+      return `${(month + 1).toString()}月${date}日`
+    }
+  } else {
+    return `${year}年${(month + 1).toString()}月${date}日`
+  }
+}

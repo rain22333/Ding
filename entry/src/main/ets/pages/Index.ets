@@ -1,5 +1,6 @@
 import { TabBarClass } from '../models/Tab'
 import Connect from './Connect'
+import Ding from './Ding'
 import My from './My'
 import Phonebook from './Phonebook'
 
@@ -57,6 +58,8 @@ struct Index {
             Phonebook()
           }else if(item.name === 'my'){
             My()
+          }else if(item.name === 'Ding'){
+            Ding()
           }
         }.tabBar(this.CommonTabBar(item))
 

@@ -2,6 +2,8 @@
   "src": [
     "pages/Index",
     "pages/Phonebook",
-    "pages/Connect"
+    "pages/Connect",
+    "component/ChatDetail/ChatDetail",
+    "pages/Ding"
   ]
 }

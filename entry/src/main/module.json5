@@ -35,8 +35,44 @@
       }
     ],
     "requestPermissions": [
-      {"name": 'ohos.permission.INTERNET'}
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:MICROPHONE_REASON",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:location",
+        "usedScene": {
+          "when": "always",
+          "abilities": [
+            'EntryAbility'
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:app_location",
+        "usedScene": {
+          "when": "always",
+          "abilities": [
+            'EntryAbility'
+          ]
+        }
+      }
     ],
+    "metadata": [{
+      "name": "client_id",
+      "value": "112292691"
+    }],
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",

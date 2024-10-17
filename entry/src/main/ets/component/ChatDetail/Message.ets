@@ -178,73 +178,78 @@ struct Message {
   // 获取语音消息
   @Builder
   getAudioContent() {
-    Row({ space: 5 }) {
 
-      ImageAnimator()
-        .images([
-          {
-            src: $r('app.media.ic_public_voice3')
-          },
-          {
-            src: $r('app.media.ic_public_voice1')
-          },
-          {
-            src: $r('app.media.ic_public_voice2')
-          },
-          {
-            src: $r('app.media.ic_public_voice3')
-          }
-        ])
-        .iterations(-1)
-        .state(this.audioState)
-        .duration(300)
-        .fillMode(FillMode.None)
-        .width(20)
-        .height(20)
-        .rotate({
-          angle: currentUser.user_id === this.currentMessage.sendUser.user_id ? 180 : 0
-        })
+    Column({space:10}){
+      Row({ space: 5 }) {
 
-      Text(`${this.currentMessage.sourceDuration}`)
-        .textAlign(TextAlign.Center)
+        ImageAnimator()
+          .images([
+            {
+              src: $r('app.media.ic_public_voice3')
+            },
+            {
+              src: $r('app.media.ic_public_voice1')
+            },
+            {
+              src: $r('app.media.ic_public_voice2')
+            },
+            {
+              src: $r('app.media.ic_public_voice3')
+            }
+          ])
+          .iterations(-1)
+          .state(this.audioState)
+          .duration(300)
+          .fillMode(FillMode.None)
+          .width(20)
+          .height(20)
+          .rotate({
+            angle: currentUser.user_id === this.currentMessage.sendUser.user_id ? 180 : 0
+          })
 
-    }
-    .width(this.getAudioWidth())
-    .backgroundColor(currentUser.user_id === this.currentMessage.sendUser.user_id ? $r('app.color.ding_primary') :
-    $r('app.color.white'))
-    .justifyContent(currentUser.user_id === this.currentMessage.sendUser.user_id ? FlexAlign.End : FlexAlign.Start)
-    .height(40)
-    .padding({
-      left: 10,
-      right: 10
-    })
-    .margin({
-      left: 10,
-      right: 10
-    })
-    .borderRadius(4)
-    .direction(currentUser.user_id === this.currentMessage.sendUser.user_id ? Direction.Ltr : Direction.Rtl)
-    .onClick(() => {
-      AudioRender.start(this.currentMessage.sourceFilePath, () => {
-        this.audioState = AnimationStatus.Running
-      }, () => {
-        this.audioState = AnimationStatus.Stopped
+        Text(`${this.currentMessage.sourceDuration}`)
+          .textAlign(TextAlign.Center)
+
+      }
+      .width(this.getAudioWidth())
+      .backgroundColor(currentUser.user_id === this.currentMessage.sendUser.user_id ? $r('app.color.ding_primary') :
+      $r('app.color.white'))
+      .justifyContent(currentUser.user_id === this.currentMessage.sendUser.user_id ? FlexAlign.End : FlexAlign.Start)
+      .height(40)
+      .padding({
+        left: 10,
+        right: 10
       })
-    })
-    // 添加条件渲染
-    if(this.transferResult){
-      Text(this.transferResult)
-        .backgroundColor(currentUser.user_id === this.currentMessage.sendUser.user_id ?
-        $r('app.color.second_primary') : $r('app.color.white'))
-        .fontColor($r('app.color.text_primary'))
-        .padding(10)
-        .lineHeight(24)
-        .margin({
-          left: 10,
-          right: 10
+      .margin({
+        left: 10,
+        right: 10
+      })
+      .borderRadius(4)
+      .direction(currentUser.user_id === this.currentMessage.sendUser.user_id ? Direction.Ltr : Direction.Rtl)
+      .onClick(() => {
+        AudioRender.start(this.currentMessage.sourceFilePath, () => {
+          this.audioState = AnimationStatus.Running
+        }, () => {
+          this.audioState = AnimationStatus.Stopped
         })
-        .borderRadius(5)
-    }
+      })
+      // 添加条件渲染
+      if(this.transferResult){
+        Text(this.transferResult)
+          .backgroundColor(currentUser.user_id === this.currentMessage.sendUser.user_id ?
+          $r('app.color.second_primary') : $r('app.color.white'))
+          .fontColor($r('app.color.text_primary'))
+          .padding(10)
+          .lineHeight(24)
+          .margin({
+            left: 10,
+            right: 10
+          })
+          .borderRadius(5)
+      }
+    }.alignItems(currentUser.user_id === this.currentMessage.sendUser.user_id ? HorizontalAlign.End : HorizontalAlign.Start)
+
+
   }
 
   build() {
